@@ -21,11 +21,8 @@ jobs:
       - name: Instalação das Dependências
         run: npm install
 
-      - name: Puxar a Imagem Docker
-        run: docker pull wlsf82/gitlab-ce
-
       - name: Iniciar Aplicação Docker
-        run: docker run --publish 80:80 --publish 22:22 --hostname localhost wlsf82/gitlab-ce
+        run: docker run --publish 80:80 --publish 22:2222 --hostname localhost wlsf82/gitlab-ce
 
       - name: Esperar a Inicialização
         run: sleep 30s # Espere tempo suficiente para a aplicação inicializar, você pode ajustar conforme necessário
