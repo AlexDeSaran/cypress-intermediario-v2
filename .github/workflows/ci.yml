@@ -16,16 +16,16 @@ jobs:
       - name: Configuração do Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
 
       - name: Instalação das Dependências
         run: npm install
 
-      - name: Iniciar Aplicação Docker
-        run: docker run --publish 80:80 --publish 2222:22 --hostname localhost wlsf82/gitlab-ce
+      - name: Iniciar Aplicação Docker em Segundo Plano
+        run: docker run --detach --publish 80:80 --publish 2222:22 --hostname localhost wlsf82/gitlab-ce
 
       - name: Esperar a Inicialização
-        run: sleep 30s 
+        run: sleep 10s # 
 
       - name: Execução dos Testes Cypress
         run: npm run test
