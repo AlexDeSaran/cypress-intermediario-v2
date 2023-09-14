@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout do Código
@@ -21,11 +21,8 @@ jobs:
       - name: Instalação das Dependências
         run: npm install
 
-      - name: Configuração do Docker
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: false
+      - name: Puxar a Imagem Docker
+        run: docker pull wlsf82/gitlab-ce
 
       - name: Iniciar Aplicação Docker
         run: docker run --publish 80:80 --publish 22:22 --hostname localhost wlsf82/gitlab-ce
@@ -35,4 +32,3 @@ jobs:
 
       - name: Execução dos Testes Cypress
         run: npm run test
-
